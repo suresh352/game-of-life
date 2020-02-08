@@ -506,7 +506,7 @@
     <snapshotRepository>
     <id>snapshots</id>
     <name>Snapshots</name>
-    <url>http://http://13.127.105.192:8081/nexus/content/repositories/snapshots</url>
+    <url>http://http://13.127.105.192/:8081/nexus/content/repositories/snapshots</url>
     </snapshotRepository>
 
   </distributionManagement>
