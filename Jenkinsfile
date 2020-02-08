@@ -41,22 +41,22 @@ stages {
       
         }
    }
- //stage('sonarqube1') {
-   // environment {
-     //  scannerHome = tool 'sonarqube1'
+   stage('sonarqube1') {
+      environment {
+         scannerHome = tool 'sonarqube1'
     }
-    //steps {
-      //withSonarQubeEnv('sonarqube1') {
-        //    sh "${scannerHome}/bin/sonar-scanner"
+      steps {
+        withSonarQubeEnv('sonarqube1') {
+             sh "${scannerHome}/bin/sonar-scanner"
           }
-          //timeout(time: 12, unit: 'MINUTES') {
-            //  waitForQualityGate abortPipeline: true
+            timeout(time: 12, unit: 'MINUTES') {
+                waitForQualityGate abortPipeline: true
           }
       }
   }
      stage('Artifact upload') {
       steps {
-       nexusPublisher nexusInstanceId: 'localnexus-3', nexusRepositoryId: 'nexus-spring', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'gameoflife-web/target/gameoflife.war']], mavenCoordinate: [artifactId: 'gameoflife', groupId: 'com.wakaleo.gameoflife', packaging: 'war', version: '$BUILD_NUMBER']]]      
+       nexusPublisher nexusInstanceId: '123', nexusRepositoryId: 'relaeses', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'gameoflife-web/target/gameoflife.war']], mavenCoordinate: [artifactId: 'gameoflife', groupId: 'com.wakaleo.gameoflife', packaging: 'war', version: '$BUILD_NUMBER']]]      
       }
      }
     //stage('Deploy War') {
